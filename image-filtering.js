@@ -32,7 +32,6 @@ const onAudioProcess = (ev) => {
   }
 
   if (RECORDED.length >= TOTAL_SIZE) {
-    // node.stop()
     PROCESSOR.disconnect()
     plotFiltered(RECORDED, contextResult)
   }

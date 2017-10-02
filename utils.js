@@ -23,7 +23,7 @@ const playSignal = (signal, callback) => {
   const data = buffer.getChannelData(0)
   const gainOsc = audioContext.createGain()
 
-  const processor = audioContext.createScriptProcessor(16384, 2, 2);
+  const processor = audioContext.createScriptProcessor(256, 2, 2);
 	processor.onaudioprocess = callback
   PROCESSOR = processor
 
