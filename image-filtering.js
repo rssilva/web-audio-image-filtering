@@ -28,7 +28,7 @@ const onAudioProcess = (ev) => {
   const length = inputData.length
 
   for (let sample = 0; sample < length; sample++) {
-    RECORDED.push( inputData[sample] )
+    RECORDED.push(inputData[sample])
   }
 
   if (RECORDED.length >= TOTAL_SIZE) {
@@ -44,7 +44,7 @@ const plotFiltered = (signal, plotContext) => {
   const dataArr = new Uint8ClampedArray(imgData.data.length)
 
   for (let i = 0; i < imgData.data.length - 1; i += 4) {
-    dataArr[i] = signal[Math.floor(i/4)] * 2
+    dataArr[i] = signal[Math.floor(i / 4)] * 2
     dataArr[i + 1] = 0
     dataArr[i + 2] = 0
     dataArr[i + 3] = 255
