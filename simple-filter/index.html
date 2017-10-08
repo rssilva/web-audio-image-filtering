@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="">
+      <label>Filter</label>
+      <select id="filter-selector" class="" name="">
+        <option value="lowpass">lowpass</option>
+        <option value="highpass">highpass</option>
+      </select>
+      <label>Frequency</label>
+      <input id="frequency-range" type="range" value="400" min="20" max="20000" />
+      <input type="text" value="400" id="current-frequency" />
+    </div>
+    <canvas id="canvas1" width="400" height="400"></canvas>
+
+    <script type="text/javascript" src="../audio-utils.js"></script>
+    <script type="text/javascript" src="simple-filter.js"></script>
+  </body>
+</html>
