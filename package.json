@@ -4,6 +4,7 @@
   "description": "",
   "main": "image-filtering.js",
   "dependencies": {
+    "chart.js": "^2.7.0",
     "eslint": "^4.8.0"
   },
   "devDependencies": {
