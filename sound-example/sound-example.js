@@ -19,11 +19,11 @@ const loadSound = (path) => {
 
 const playBuffer = (buffer) => {
   const startTime = audioContext.currentTime
-  const signal = buffer.getChannelData(0).slice(1100, 1200)
+  const signal = buffer.getChannelData(0).slice(1000, 1150)
 
-  filter.filterSignal(signal, 'highpass', 5000)
+  filter.filterSignal(signal, 'highpass', 15000)
     .then((filtered) => {
-      plot(signal, filtered)
+      plotGraph(signal, filtered)
     })
 
   const source = audioContext.createBufferSource()
@@ -35,59 +35,29 @@ const playBuffer = (buffer) => {
   source.stop(startTime + 2)
 }
 
-const plot = (signal1, signal2) => {
-  const canvas = document.querySelector('#canvas')
-  const context = canvas.getContext('2d')
+const plotGraph = (signal, filtered) => {
+  const context = document.querySelector('#canvas').getContext('2d')
   const axis = []
-  signal1.forEach((value, index) => axis.push(index))
 
-  const chart = new Chart(context, {
-    type: 'line',
-    data: {
-      labels: axis,
-      datasets: [
-        {
-          data: signal1,
-          borderWidth: 1,
-          fill: false,
-          borderColor: 'rgba(0, 200, 0, 1)'
-        },
-        {
-          data: signal2,
-          borderWidth: 1,
-          fill: false,
-          borderColor: 'rgba(200, 0, 0, 1)'
-        }
-      ]
-    },
-    options: {
-      animation: {
-        duration: 0
-      },
-      elements: {
-        line: {
-          tension: 0
-        }
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            suggestedMin: -0.0005,
-            suggestedMax: 0.0005
-          }
-        }]
-      }
-    }
+  signal.forEach((value, i) => { axis.push(i) })
+
+  plot({
+    signals: [signal, filtered],
+    colors: ['orange', 'lightBlue'],
+    axis,
+    context,
+    suggestedMin: 0,
+    suggestedMax: 0.0005
   })
-
-  console.log(chart)
 }
 
 loadSound('../peels.mp3')
   .then((data) => {
     audioContext.decodeAudioData(
       data,
-      (buffer) => playBuffer(buffer),
+      (buffer) => {
+        playBuffer(buffer)
+      },
       (error) => console.error(error)
     )
   })
