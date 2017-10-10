@@ -17,9 +17,9 @@ baseImage.onload = () => {
   const splitted = splitRGB(imageData.data)
 
   Promise.all([
-    imageFilter.filterSignal(splitted.red, 'highpass', 5000),
-    imageFilter.filterSignal(splitted.green, 'highpass', 5000),
-    imageFilter.filterSignal(splitted.blue, 'highpass', 5000)
+    imageFilter.filterSignal(splitted.red, 'highpass', 4000),
+    imageFilter.filterSignal(splitted.green, 'highpass', 4000),
+    imageFilter.filterSignal(splitted.blue, 'highpass', 4000)
   ])
     .then((values) => {
       const arr = mountRGB({
